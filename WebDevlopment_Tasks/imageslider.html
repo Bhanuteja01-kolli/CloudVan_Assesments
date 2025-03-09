@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slider-container {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .slider-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <img src="./OIP (1).jpeg" alt="Slider Image" class="slider-image" id="sliderImage">
+        <button class="slider-button prev" id="prevButton">Previous</button>
+        <button class="slider-button next" id="nextButton">Next</button>
+    </div>
+
+    <script>
+
+const images = [
+    'OIP (1).jpeg'
+    ,'OIP (2).jpeg'
+    ,'OIP (3).jpeg'
+
+];
+
+const sliderImage = document.getElementById('sliderImage');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+
+
+let currentImageIndex = 0;
+
+function updateImage() {
+    sliderImage.src = images[currentImageIndex];
+}
+
+nextButton.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % images.length; 
+    updateImage();
+});
+
+prevButton.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; 
+    updateImage();
+});
+
+updateImage();
+    </script>
+</body>
+</html>
